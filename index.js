@@ -55,6 +55,9 @@ export default {
     'dropdownClassName': {
       type: String,
     },
+    'dropdownAutoStretch': {
+      type: Boolean,
+    },
     'loaderOptions': {
       type: Object,
       default() {
@@ -111,6 +114,7 @@ export default {
     if (this.$refs.root.isReady && this.$refs.root.requestedAttributes) {
       this._handleAttributesUpdate(this.$refs.root.requestedAttributes)
       this._updateDropdownClassname()
+      this._updateDropdownAutoStretch()
     }
 
     if (sznSelectLoadingBegun) {
@@ -149,6 +153,7 @@ export default {
 
   updated() {
     this._updateDropdownClassname()
+    this._updateDropdownAutoStretch()
   },
 
   beforeDestroy() {
@@ -167,6 +172,10 @@ export default {
 
     _updateDropdownClassname() {
       this.$refs.root.dropdownClassName = this.dropdownClassName
+    },
+
+    _updateDropdownAutoStretch() {
+      this.$refs.root.dropdownAutoStretch = this.dropdownAutoStretch
     },
 
     _processAttributes(attributesUpdate) {
